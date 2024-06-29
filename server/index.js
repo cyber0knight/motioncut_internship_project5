@@ -1,37 +1,45 @@
-var mysql = require('mysql2');
-const { faker } = require('@faker-js/faker');
+import express from 'express';
+import cors from "cors";
+import cookieParser from 'cookie-parser';
+import authRouters from './routes/auth.js'
+import userRoutes from './routes/users.js'
+import menuRoutes from './routes/menu.js'
+import reviewRouters from './routes/reviews.js'
+import cartRoute from './routes/cart_item.js'
+// import providerRouters from './routes/providers.js'
+// import orderRouters from './routes/orders.js'
 
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '2774693949',
-    database: 'tiffin_service'
-})
+const app = express();
 
-var data = [];
 
-for(var i=0; i<10; i++){
-    data.push(
-        [
-            faker.internet.email(),
-            faker.internet.password(),
-            faker.internet.userName(),
-            faker.image.avatar(),
-            faker.phone.number(),
-            faker.location.zipCode(),
-            faker.location.streetAddress(),
-            faker.date.past().toISOString().slice(0, 19).replace('T', ' ')
-        ]
-    )
-}
+//middlewares
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Credentials", true);
+    next();
+});
+app.use(express.json());
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+}));
+app.use(cookieParser());
 
-console.log(data);
 
-var q = 'insert into users (email, password, name, image, phone, zincode, address, created_at) values ?';
+//routes
+app.use("/api/auth", authRouters);
+app.use("/api/users", userRoutes);
+app.use("/api/menu/", menuRoutes);
+app.use("/api/reviews", reviewRouters);
+app.use("/api/cart", cartRoute);
+// app.use("/api/providers", providerRouters);
+// app.use("/api/orders", orderRouters);
 
-connection.query(q, [data], function(err, result){
-    if(err) throw err;
-    console.log(result);
-})
+var port = 8800;
 
-connection.end();
+// app.get('/', (req, res) => {
+//     res.send('Hello World');
+// });
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});

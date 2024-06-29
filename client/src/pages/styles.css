@@ -1,0 +1,88 @@
+.LandingPage{
+    /* background-image: url('../images/items3.png');
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; */
+    height: 100vh;
+}
+
+.lanPageContent{
+    /* background-color: black; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 90%;
+    margin-left: 10px;
+}
+
+.lanPageContent img{
+    width: 55%;
+    height: 60%;
+}
+
+.lanPageContent h1{
+    font-family: "Libre Baskerville", Georgia, 'Times New Roman', Times, serif;
+}
+.lanPageContent h4{
+    font-family: "Alice", Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Container styling */
+.review-container {
+    margin: 20px;
+  }
+  
+  /* Review styling */
+  .review {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Form styling */
+  .review-form {
+    margin-top: 20px;
+  }
+  
+  .review-form div {
+    margin-bottom: 10px;
+  }
+  
+  .review-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .review-form input[type="number"],
+  .review-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .review-form button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .review-form button:hover {
+    background-color: #0056b3;
+  }
+  
+
+
+@media (max-width:460px){
+    .lanPageContent img{
+        width: 55%;
+        height: 55%;
+    }
+}
