@@ -6,7 +6,7 @@ import Menu from "../components/menu.js"
 export default function Home() {
   return (
     <div>
-      <Header type="logout" />
+      <Header type="profile" />
       <Menu />
     </div>
   )

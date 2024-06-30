@@ -2,6 +2,7 @@ import React from 'react'
 import './styles.css'
 import storeLogo from '../images/store.png'
 import logoutLogo from '../images/logout.png'
+import profileLogo from '../images/profileLogo.png'
 import { Link, useNavigate } from 'react-router-dom';
 import makeRequest from '../axios.js'; // Assuming makeRequest is a custom Axios instance
 
@@ -37,14 +38,27 @@ export default function Header({ type }) {
         }
     };
 
+    if(type === "logout"){
+        return(
+            <header>
+            <Link to="/" style={{textDecoration:"none", color:"white"}}><h1><span>AM</span>BITES</h1></Link>
+            <div className='nav_links' >
+                <Link to="/cart"><img src={storeLogo} alt={linkText} /></Link>
+                <Link onClick={leave}><img id='logout' src={logoutLogo} alt={linkText} /></Link>
+            </div>
+            </header>
+        )
+        
+    }
+    else{
     return (
         <header>
             <Link to="/" style={{textDecoration:"none", color:"white"}}><h1><span>AM</span>BITES</h1></Link>
             {
-                type === 'logout' ?
+                type === 'profile' ?
                     <div className='nav_links' >
                         <Link to="/cart"><img src={storeLogo} alt={linkText} /></Link>
-                        <Link onClick={leave}><img id='logoutLogo' src={logoutLogo} alt={linkText} /></Link>
+                        <Link to="/profile"><img id='profileLogo' src={profileLogo} alt={linkText} /></Link>
                     </div>
                     :
                     <div>
@@ -55,4 +69,5 @@ export default function Header({ type }) {
             }
         </header>
     );
+}
 }

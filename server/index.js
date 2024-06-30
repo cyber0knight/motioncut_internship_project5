@@ -6,8 +6,7 @@ import userRoutes from './routes/users.js'
 import menuRoutes from './routes/menu.js'
 import reviewRouters from './routes/reviews.js'
 import cartRoute from './routes/cart_item.js'
-// import providerRouters from './routes/providers.js'
-// import orderRouters from './routes/orders.js'
+import orderRouters from './routes/orders.js'
 
 const app = express();
 
@@ -28,11 +27,10 @@ app.use(cookieParser());
 //routes
 app.use("/api/auth", authRouters);
 app.use("/api/users", userRoutes);
-app.use("/api/menu/", menuRoutes);
+app.use("/api/menu", menuRoutes);
 app.use("/api/reviews", reviewRouters);
 app.use("/api/cart", cartRoute);
-// app.use("/api/providers", providerRouters);
-// app.use("/api/orders", orderRouters);
+app.use("/api/orders", orderRouters);
 
 var port = 8800;
 

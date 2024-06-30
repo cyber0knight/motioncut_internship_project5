@@ -9,6 +9,7 @@ import LandingPage from "./pages/LandingPage.js";
 import Home from "./pages/Home.js";
 import ItemDetails from "./pages/ItemDetails.js";
 import Cart from "./pages/Cart.js";
+import Profile from "./pages/profile.js";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
   {
     path: "/cart",
     element: <Cart />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   }
 ]);
 

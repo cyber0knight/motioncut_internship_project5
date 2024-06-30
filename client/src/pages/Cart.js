@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './cart.css';
 import Header from "../components/header.js";
+import makeRequest from '../axios.js';
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const location = useLocation();
+  const userId = JSON.parse(localStorage.getItem('user')).id;
 
-  // Load cart items from localStorage on initial render
   useEffect(() => {
     const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    console.log("Loaded from localStorage:", storedCartItems); // Debug log
+    console.log("Loaded from localStorage:", storedCartItems);
     setCartItems(storedCartItems);
   }, []);
   
-  // Function to update localStorage whenever cartItems changes
   const updateLocalStorage = (updatedCartItems) => {
     localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
   };
@@ -24,7 +24,7 @@ export default function Cart() {
       item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
     );
     setCartItems(updatedCartItems);
-    updateLocalStorage(updatedCartItems); // Update localStorage after increasing quantity
+    updateLocalStorage(updatedCartItems);
   };
 
   const decreaseQuantity = (itemId) => {
@@ -32,23 +32,38 @@ export default function Cart() {
       item.id === itemId && item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : item
     );
     setCartItems(updatedCartItems);
-    updateLocalStorage(updatedCartItems); // Update localStorage after decreasing quantity
+    updateLocalStorage(updatedCartItems);
   };
 
   const removeItemFromCart = (itemId) => {
     const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
     setCartItems(updatedCartItems);
-    updateLocalStorage(updatedCartItems); // Update localStorage after removing item
+    updateLocalStorage(updatedCartItems);
   };
 
   const clearCart = () => {
     setCartItems([]);
-    updateLocalStorage([]); // Update localStorage after clearing cart
+    updateLocalStorage([]);
   };
 
-  const handleSubmit = () => {
-    clearCart();
-    alert('Order placed successfully!');
+  const handleSubmit = async () => {
+    try {
+      const orderPromises = cartItems.map(item => {
+        return makeRequest.post('/orders/create', {
+          User_ID: userId,
+          Menu_ID: item.id,
+          Price: item.price
+        });
+      });
+
+      await Promise.all(orderPromises);
+
+      clearCart();
+      alert('Order placed successfully!');
+    } catch (error) {
+      console.error('Error placing order:', error);
+      alert('Failed to place order. Please try again.');
+    }
   };
 
   const calculateTotalPrice = () => {
@@ -57,7 +72,7 @@ export default function Cart() {
 
   return (
     <div>
-      <Header type="logout" />
+      <Header type="profile" />
       <div className="cart-container">
         <h1>Cart</h1>
         <table className="cart-items-table">

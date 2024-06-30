@@ -79,7 +79,7 @@ export default function ItemDetails() {
 
   return (
     <div className=''>
-      <Header type="logout" />
+      <Header type="profile" />
       <div className="item-detail container">
         <div className='row border rounded border-primary mt-5 '>
           <div className='d-flex mt-5 mb-5 flex-wrap align-items-center justify-content-center'>
