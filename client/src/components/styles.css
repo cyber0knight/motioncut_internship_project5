@@ -2,12 +2,12 @@
 header {
     display: flex;
     justify-content: space-between;
+    background-color: #865310;
     align-items: center;
-    background-color: #f5ba13;
     padding: 16px 32px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     color: #fff;
-    font-family: "Libre Baskerville", Georgia, 'Times New Roman', Times, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: 400;
 }
 
