@@ -65,7 +65,16 @@ export default function ItemDetails() {
   };
 
   const addItemToCart = (quantity, price) => {
-    navigate('/cart', { state: { id, quantity, price } });
+    const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const existingItem = storedCartItems.find(item => item.id === id);
+    if (existingItem) {
+      existingItem.quantity += quantity;
+    } else {
+      storedCartItems.push({ id, quantity, price });
+    }
+    localStorage.setItem('cartItems', JSON.stringify(storedCartItems));
+    // alert('Item added to cart successfully!');
+    // navigate('/cart');
   };
 
   return (
@@ -77,7 +86,7 @@ export default function ItemDetails() {
             <img src={item.image} alt={item.name} style={{ width: "400px" }} />
             <div className='m-5'>
               <h1>{item.name}</h1>
-              <p>${item.price}</p>
+              <p>₹{item.price}</p>
               <button className='btn btn-primary' onClick={() => addItemToCart(1, item.price)}>Add to Cart</button>
             </div>
           </div>

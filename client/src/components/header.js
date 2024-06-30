@@ -43,7 +43,7 @@ export default function Header({ type }) {
             {
                 type === 'logout' ?
                     <div className='nav_links' >
-                        <Link><img src={storeLogo} alt={linkText} /></Link>
+                        <Link to="/cart"><img src={storeLogo} alt={linkText} /></Link>
                         <Link onClick={leave}><img id='logoutLogo' src={logoutLogo} alt={linkText} /></Link>
                     </div>
                     :

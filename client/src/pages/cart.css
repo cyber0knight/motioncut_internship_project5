@@ -1,52 +1,95 @@
 .cart-container {
-    padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .cart-items {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .quantity-controls {
-    display: flex;
-    align-items: center;
-  }
-  
-  .quantity-controls button {
-    margin: 0 5px;
-  }
-  
-  .remove-button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  .order-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: green;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-  }
-  
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.cart-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.cart-items-table th,
+.cart-items-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-items-table th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.cart-item td {
+  vertical-align: middle;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-controls button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.quantity-controls span {
+  display: inline-block;
+  width: 30px;
+  text-align: center;
+}
+
+.remove-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.remove-button:hover {
+  background-color: darkred;
+}
+
+.order-button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.order-button:hover {
+  background-color: darkgreen;
+}
+
+.total-price {
+  text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #333;
+}
